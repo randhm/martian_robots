@@ -1,14 +1,13 @@
 class Surface
-  # def height=(number)
-  #   @height = number
-  # end
+  attr_reader :height
+  attr_reader :width
 
-  # def height
-  #   @height
-  # end
+  def initialize(dimenions)
+#    dimenions = '5 3'
+    @width = dimenions.split.first.to_i
+    @height = dimenions.split.last.to_i
+  end
 
-  attr_accessor :height #this replaces the need for the above methods
 
-  attr_accessor :width
 
 end
