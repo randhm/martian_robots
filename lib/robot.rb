@@ -1,17 +1,20 @@
 class Robot
-  attr_accessor :position #attr_accessors defined at the beginning, expect private methods
 
-def orientation
-  position.last
-end
+  def initialize(position, surface)
+    @surface = surface
+    @x = position.split[0].to_i
+    @y = position.split[1].to_i
+    @orientation = position.split[2]
+  end
 
-def orientation=(new_orientation)
-  position[2] = new_orientation #third element (the last one) should have the value new_orientation
-end
+  def position
+    [@x,@y,@orientation].join(' ')
+  end
+
 
   def move(instructions)
-    if instructions == 'L' && self.orientation == 'N'
-      self.orientation = 'W'
+    if instructions == 'L' && @orientation == 'N'
+      @orientation = 'W'
     end
   end
 
