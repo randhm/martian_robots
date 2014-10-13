@@ -33,6 +33,11 @@ end
     expect(@robot.position).to eq('5 3 W')
   end
 
+  it 'can take two moves in one go' do
+    @robot.move('LF')
+    expect(@robot.position).to eq('4 3 W')
+  end
+
   describe 'invalid initialization values' do
     it 'should not accept less than three arguments'
     it 'should not accept more than three arguments'
