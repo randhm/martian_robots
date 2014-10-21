@@ -4,6 +4,12 @@ class Robot
     @surface = surface
     ps = position.split
     raise ArgumentError if ps.length != 3
+    # right_char_order = position
+    # raise ArgumentError if right_char_order !=~ /^\d+\d+[neswNSEW]+$/
+
+    # if !(/^\d+\d+[neswNSEW]+$/.match(position))
+    #   raise ArgumentError
+    # end
     @x = ps[0].to_i
     @y = ps[1].to_i
     @orientation = ps[2]
