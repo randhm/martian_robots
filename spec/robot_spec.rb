@@ -56,10 +56,10 @@ describe 'robot' do
 
     it 'should accept number number letter' do
       #expect { Robot.new('2 4 E', @surface) }.to eq('2 4 E')
-      #expect { Robot.new('N 3 N', @surface) }.to raise_error()
-      # expect { Robot.new('N N 3 ', @surface) }.to raise_error()
-      # expect { Robot.new('N N N ', @surface) }.to raise_error()
-      # expect { Robot.new('N N N ', @surface) }.to raise_error()
+      expect { Robot.new('N 3 N', @surface) }.to raise_error
+      expect { Robot.new('N N 3 ', @surface) }.to raise_error()
+      expect { Robot.new('N N N ', @surface) }.to raise_error()
+      #extend test to cater for symbols, invalid data etc.
     end
 
     describe 'something other than two numbers and an orientation seperated by a string' do

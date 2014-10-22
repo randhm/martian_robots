@@ -7,9 +7,7 @@ class Robot
     # right_char_order = position
     # raise ArgumentError if right_char_order !=~ /^\d+\d+[neswNSEW]+$/
 
-    # if !(/^\d+\d+[neswNSEW]+$/.match(position))
-    #   raise ArgumentError
-    # end
+    raise ArgumentError if /^\d+\s\d+\s[neswNSEW]+$/.match(position).nil?
     @x = ps[0].to_i
     @y = ps[1].to_i
     @orientation = ps[2]
