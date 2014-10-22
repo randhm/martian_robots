@@ -1,15 +1,14 @@
 class Robot
 
   def initialize(position, surface)
+    raise ArgumentError if /^\d+\s\d+\s[neswNSEW]+$/.match(position).nil?
+
     @surface = surface
     ps = position.split
-    raise ArgumentError if ps.length != 3
-    # right_char_order = position
-    # raise ArgumentError if right_char_order !=~ /^\d+\d+[neswNSEW]+$/
 
-    raise ArgumentError if /^\d+\s\d+\s[neswNSEW]+$/.match(position).nil?
-    @x = ps[0].to_i
-    @y = ps[1].to_i
+    @x, @y = ps[0].to_i, ps[1].to_i
+    raise ArgumentError if @x > 50 || @y > 50
+
     @orientation = ps[2]
     @surface.robots_positions[self.object_id] = {last_known_position: position, state: :successful}
   end

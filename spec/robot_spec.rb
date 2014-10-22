@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'robot' do
+
   before(:each) do
     @surface = Surface.new('5 3')
     @robot = Robot.new('5 3 N', @surface)
@@ -18,13 +19,8 @@ describe 'robot' do
     expect(@robot.position).to eq('5 3 N')
   end
 
-
-
-
-
   it 'orientation changes from N to W when receiving L command' do
     #given
-
 
     #when
     @robot.move('L')
@@ -43,40 +39,44 @@ describe 'robot' do
     expect(@robot.last_position).to eq('5 3 N LOST')
   end
 
+
   describe 'invalid initialization values' do
+
     it 'should not accept less than three arguments' do
-      expect { Robot.new('', @surface) }.to raise_error()
-      expect { Robot.new('5', @surface) }.to raise_error()
-      expect { Robot.new('5 3', @surface) }.to raise_error()
+      expect { Robot.new('', @surface) }.to raise_error(ArgumentError)
+      expect { Robot.new('5', @surface) }.to raise_error(ArgumentError)
+      expect { Robot.new('5 3', @surface) }.to raise_error(ArgumentError)
       expect { Robot.new('5 3 N', @surface) }.not_to raise_error()
     end
     it 'should not accept more than three arguments' do
-      expect { Robot.new('5 3 3 N', @surface) }.to raise_error()
+      expect { Robot.new('5 3 3 N', @surface) }.to raise_error(ArgumentError)
     end
 
     it 'should accept number number letter' do
       #expect { Robot.new('2 4 E', @surface) }.to eq('2 4 E')
-      expect { Robot.new('N 3 N', @surface) }.to raise_error
-      expect { Robot.new('N N 3 ', @surface) }.to raise_error()
-      expect { Robot.new('N N N ', @surface) }.to raise_error()
+      expect { Robot.new('N 3 N', @surface) }.to raise_error(ArgumentError)
+      expect { Robot.new('N N 3 ', @surface) }.to raise_error(ArgumentError)
+      expect { Robot.new('N N N ', @surface) }.to raise_error(ArgumentError)
       #extend test to cater for symbols, invalid data etc.
     end
 
-    describe 'something other than two numbers and an orientation seperated by a string' do
-      describe 'valid position' do
-        describe 'both dimensions need to be no more than 50' do
-          it 'handles when :x > 50'
-          it 'handles when :y > 50'
-        end
-      end
-
-      describe 'valid orientation' do
-        it 'should only allow N W E S as values'
-      end
+    it 'should raise error when :x > 50' do
+      expect { Robot.new('51 3 N', @surface) }.to raise_error(ArgumentError)
     end
 
+    it 'should raise error handles when :y > 50' do
+      expect { Robot.new('5 63 N', @surface) }.to raise_error(ArgumentError)
+    end
 
+    it 'should only allow N W E S as values' do
+      expect { Robot.new('5 3 N', @surface) }.not_to raise_error()
+      expect { Robot.new('5 3 W', @surface) }.not_to raise_error()
+      expect { Robot.new('5 3 S', @surface) }.not_to raise_error()
+      expect { Robot.new('5 3 E', @surface) }.not_to raise_error()
+      expect { Robot.new('5 3 G', @surface) }.to raise_error()
+    end
   end
+end
 
 
 
@@ -100,4 +100,4 @@ describe 'robot' do
   # end
 
 
-end
+
