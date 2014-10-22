@@ -19,17 +19,26 @@ describe 'surface' do
   end
 
   describe 'invalid initialization values' do
-    describe 'something other than two numbers seperated by a string' do
-      it 'should handle one number'
-      it 'should handle three numbers'
-      it 'should handle random gibberish'
+      it 'should not handle one number' do
+        expect { Surface.new('5') }.to raise_error(ArgumentError)
+      end
+      it 'should not handle three numbers' do
+        expect { Surface.new('5 3 3') }.to raise_error(ArgumentError)
+      end
+      it 'should not handle random gibberish' do
+        expect { Surface.new('53%$%£') }.to raise_error(ArgumentError)
+      end
     end
 
     describe 'both dimensions need to be no more than 50' do
-      it 'handles when :x > 50'
-      it 'handles when :y > 50'
+      it 'handles when :x > 50' do
+        expect { Surface.new('51 3') }.to raise_error(ArgumentError)
+      end
+      it 'handles when :y > 50' do
+        expect { Surface.new('3 73') }.to raise_error(ArgumentError)
+      end
     end
 
   end
 
-end
+

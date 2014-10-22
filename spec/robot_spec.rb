@@ -20,18 +20,29 @@ describe 'robot' do
   end
 
   it 'orientation changes from N to W when receiving L command' do
-    #given
-
-    #when
     @robot.move('L')
-
-    #then
     expect(@robot.last_position).to eq('5 3 W')
   end
 
-  it 'can take two moves in one go' do
+  it 'orientation changes from N to E when receiving R command' do
+    @robot.move('R')
+    expect(@robot.last_position).to eq('5 3 E')
+  end
+
+  it 'coordinates change from 5 2 N to 5 3 N when receiving F command' do
+    robot = Robot.new('5 2 N', @surface)
+    robot.move('F')
+    expect(robot.last_position).to eq('5 3 N')
+  end
+
+  it 'can take two commands in one go' do
     @robot.move('LF')
     expect(@robot.last_position).to eq('4 3 W')
+  end
+
+  it 'can take three commands in one go' do
+    @robot.move('LFR')
+    expect(@robot.last_position).to eq('4 3 N')
   end
 
   it 'logs that it is LOST' do
