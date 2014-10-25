@@ -19,26 +19,41 @@ describe 'surface' do
   end
 
   describe 'invalid initialization values' do
-      it 'should not handle one number' do
-        expect { Surface.new('5') }.to raise_error(ArgumentError)
-      end
-      it 'should not handle three numbers' do
-        expect { Surface.new('5 3 3') }.to raise_error(ArgumentError)
-      end
-      it 'should not handle random gibberish' do
-        expect { Surface.new('53%$%£') }.to raise_error(ArgumentError)
-      end
+    it 'should not handle one number' do
+      expect { Surface.new('5') }.to raise_error(ArgumentError)
     end
+    it 'should not handle three numbers' do
+      expect { Surface.new('5 3 3') }.to raise_error(ArgumentError)
+    end
+    it 'should not handle random gibberish' do
+      expect { Surface.new('53%$%£') }.to raise_error(ArgumentError)
+    end
+  end
 
-    describe 'both dimensions need to be no more than 50' do
-      it 'handles when :x > 50' do
-        expect { Surface.new('51 3') }.to raise_error(ArgumentError)
-      end
-      it 'handles when :y > 50' do
-        expect { Surface.new('3 73') }.to raise_error(ArgumentError)
-      end
+  describe 'both dimensions need to be no more than 50' do
+    it 'handles when :x > 50' do
+      expect { Surface.new('51 3') }.to raise_error(ArgumentError)
     end
+    it 'handles when :y > 50' do
+      expect { Surface.new('3 73') }.to raise_error(ArgumentError)
+    end
+  end
+
+  describe '#save_out_of_bounds_coordinate' do
+    it 'save_out_of_bounds_coordinate'
+  end
+
+  describe '#out_of_bounds?' do
+
+    it 'returns true if coordinates are out of bounds'
 
   end
+
+  describe '#out_of_bounds_coordinates_list' do
+
+    it 'return saved out_of_bounds_coordinate list'
+  end
+
+end
 
 

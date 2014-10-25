@@ -10,7 +10,8 @@ class Robot
     raise ArgumentError if @x > 50 || @y > 50
 
     @orientation = ps[2]
-    @surface.robots_positions[self.object_id] = {last_known_position: position, state: :successful}
+    @robots_positions = {}
+    @robots_positions[self.object_id] = {last_known_position: position, state: :successful}
   end
 
   def position
@@ -18,16 +19,17 @@ class Robot
   end
 
   def last_position
-    @surface.robots_positions[self.object_id][:last_known_position] + (' LOST' if out_of_bounds?).to_s
+    @robots_positions[self.object_id][:last_known_position] + (' LOST' if @surface.out_of_bounds?(@x, @y)).to_s
   end
 
-  def out_of_bounds?
-    @surface.width < @x || @surface.height < @y || @y < 0 || @x < 0
-  end
+
 
   def move(instructions)
     instructions.each_char do |char|
-      if !out_of_bounds?
+     # if @surface.out_of_bounds?(@x, @y)
+      #  @surface.save_out_of_bounds_coordinate(@x, @y)
+
+      if !@surface.out_of_bounds?(@x, @y)
         if char == 'L'
           @orientation = case @orientation
           when 'N' then 'W'
@@ -47,7 +49,7 @@ class Robot
         if char == 'F'
           # if no other robots have fallen off the planet going here...
           # log with the surface that we're about to move
-          @surface.robots_positions[self.object_id][:state] = :transferring
+          @robots_positions[self.object_id][:state] = :transferring
           case @orientation
           when 'N' then @y+=1
           when 'S' then @y-=1
@@ -56,15 +58,14 @@ class Robot
           end
         end
         # log with the surface that our move was successful (if it was! exit
-          if out_of_bounds?
+          if @surface.out_of_bounds?(@x, @y)
             @orientation+= ' LOST'
           else
-            @surface.robots_positions[self.object_id] = {last_known_position: position, state: :successful}
+            @robots_positions[self.object_id] = {last_known_position: position, state: :successful}
           end
         end
       end
     end
   end
-
 
 
