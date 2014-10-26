@@ -17,9 +17,9 @@ class Surface
     @width < x || @height < y || y < 0 || x < 0
   end
 
-# def save(x, y)
-#   @out_of_bounds_coordinates << [x, y]
-# end
+  def save_out_of_bounds_coordinates(x, y)
+    @out_of_bounds_coordinates << [x, y]
+  end
 
 # def return_all_out_of_bounds_coords
 #   @out_of_bounds_coordinates

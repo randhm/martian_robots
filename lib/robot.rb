@@ -63,10 +63,10 @@ class Robot
             @orientation+= ' LOST'
           else
             @robots_positions[self.object_id] = {last_known_position: position, state: :successful}
-          end
-        end
-      end
-    end
-  end
+          end #if @surface.out_of_bounds?(@x, @y)
+        end # !@surface.out_of_bounds?(@x, @y)
+      end #do
+    end #move method
+end #class
 
 
