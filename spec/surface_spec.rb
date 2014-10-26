@@ -15,7 +15,7 @@ describe 'surface' do
   it 'should record all previous robots last positions' do
     robot = Robot.new('0 0 N', @surface)
     robot.move('FF')
-    expect(@surface.robots_positions[robot.object_id]).to eq({last_known_position: '0 2 N', state: :successful})
+    expect(robot.robots_positions[robot.object_id]).to eq({last_known_position: '0 2 N', state: :successful})
   end
 
   describe 'invalid initialization values' do

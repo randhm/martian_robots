@@ -1,7 +1,7 @@
 class Surface
   attr_reader :height
   attr_reader :width
-  attr_reader :robots_positions
+  #attr_reader :robots_positions
 
   def initialize(dimenions)
     raise ArgumentError if /^\d+\s\d+$/.match(dimenions).nil?

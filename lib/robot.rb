@@ -1,4 +1,5 @@
 class Robot
+  attr_reader :robots_positions
 
   def initialize(position, surface)
     raise ArgumentError if /^\d+\s\d+\s[neswNSEW]+$/.match(position).nil?
