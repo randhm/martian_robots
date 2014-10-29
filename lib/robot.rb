@@ -50,17 +50,21 @@ class Robot
         if char == 'F'
           # if no other robots have fallen off the planet going here...
           # log with the surface that we're about to move
-          @robots_positions[self.object_id][:state] = :transferring
-          case @orientation
-          when 'N' then @y+=1
-          when 'S' then @y-=1
-          when 'E' then @x=+1
-          when 'W' then @x-=1
+          if !@surface.out_of_bounds_coordinates.include?(@robots_positions[self.object_id][:last_known_position])
+            @robots_positions[self.object_id][:state] = :transferring
+            case @orientation
+            when 'N' then @y+=1
+            when 'S' then @y-=1
+            when 'E' then @x=+1
+            when 'W' then @x-=1
+            end
           end
         end
         # log with the surface that our move was successful (if it was! exit
           if @surface.out_of_bounds?(@x, @y)
             @orientation+= ' LOST'
+            #@robots_positions[self.object_id][:state] = :lost
+            @surface.save_out_of_bounds_coordinates(@robots_positions[self.object_id][:last_known_position])
           else
             @robots_positions[self.object_id] = {last_known_position: position, state: :successful}
           end #if @surface.out_of_bounds?(@x, @y)

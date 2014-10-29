@@ -1,7 +1,7 @@
 class Surface
   attr_reader :height
   attr_reader :width
-  #attr_reader :robots_positions
+  attr_reader :out_of_bounds_coordinates
 
   def initialize(dimenions)
     raise ArgumentError if /^\d+\s\d+$/.match(dimenions).nil?
@@ -17,8 +17,8 @@ class Surface
     @width < x || @height < y || y < 0 || x < 0
   end
 
-  def save_out_of_bounds_coordinates(x, y)
-    @out_of_bounds_coordinates << [x, y]
+  def save_out_of_bounds_coordinates(last_known_position)
+    @out_of_bounds_coordinates << last_known_position
   end
 
 # def return_all_out_of_bounds_coords
