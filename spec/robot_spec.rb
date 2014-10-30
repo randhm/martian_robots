@@ -108,23 +108,7 @@ end
 
 
 
-  # describe 'validating sample data from Red Badger' do
-  #   it 'works :-)' do
-  #     @surface = Surface.new('5 3')
 
-  #     robot = Robot.new('1 1 E', @surface)
-  #     robot.move('RFRFRFRF')
-  #     expect(robot.position).to eq('1 1 E')
-
-  #     robot = Robot.new('3 2 N', @surface)
-  #     robot.move('FRRFLLFFRRFLL')
-  #     expect(robot.position).to eq('3 3 N LOST')
-
-  #     robot = Robot.new('0 3 W', @surface)
-  #     robot.move('LLFFFLFLFL')
-  #     expect(robot.position).to eq('2 3 S')
-  #   end
-  # end
 
 
 

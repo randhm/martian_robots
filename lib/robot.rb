@@ -29,7 +29,6 @@ class Robot
     instructions.each_char do |char|
      # if @surface.out_of_bounds?(@x, @y)
       #  @surface.save_out_of_bounds_coordinate(@x, @y)
-
       if !@surface.out_of_bounds?(@x, @y)
         if char == 'L'
           @orientation = case @orientation
@@ -55,7 +54,7 @@ class Robot
             case @orientation
             when 'N' then @y+=1
             when 'S' then @y-=1
-            when 'E' then @x=+1
+            when 'E' then @x+=1
             when 'W' then @x-=1
             end
           end
