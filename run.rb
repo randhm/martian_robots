@@ -3,8 +3,6 @@ require_relative './lib/surface'
 
 @surface = Surface.new('5 3')
 
-
-
 robot = Robot.new('1 1 E', @surface)
 robot.move('RFRFRFRF')
 puts robot.position

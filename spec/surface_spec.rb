@@ -38,22 +38,6 @@ describe 'surface' do
       expect { Surface.new('3 73') }.to raise_error(ArgumentError)
     end
   end
-
-  describe '#save_out_of_bounds_coordinate' do
-    it 'save_out_of_bounds_coordinate'
-  end
-
-  describe '#out_of_bounds?' do
-
-    it 'returns true if coordinates are out of bounds'
-
-  end
-
-  describe '#out_of_bounds_coordinates_list' do
-
-    it 'return saved out_of_bounds_coordinate list'
-  end
-
 end
 
 

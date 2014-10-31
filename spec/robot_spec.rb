@@ -50,9 +50,7 @@ describe 'robot' do
     expect(@robot.last_position).to eq('5 3 N LOST')
   end
 
-
   describe 'invalid initialization values' do
-
     it 'should not accept less than three arguments' do
       expect { Robot.new('', @surface) }.to raise_error(ArgumentError)
       expect { Robot.new('5', @surface) }.to raise_error(ArgumentError)
@@ -64,11 +62,9 @@ describe 'robot' do
     end
 
     it 'should accept number number letter' do
-      #expect { Robot.new('2 4 E', @surface) }.to eq('2 4 E')
       expect { Robot.new('N 3 N', @surface) }.to raise_error(ArgumentError)
       expect { Robot.new('N N 3 ', @surface) }.to raise_error(ArgumentError)
       expect { Robot.new('N N N ', @surface) }.to raise_error(ArgumentError)
-      #extend test to cater for symbols, invalid data etc.
     end
 
     it 'should raise error when :x > 50' do
@@ -87,22 +83,25 @@ describe 'robot' do
       expect { Robot.new('5 3 G', @surface) }.to raise_error()
     end
   end
-    describe 'leaving robot scent' do
-      it 'should log the last known position if falls off the planet' do
-        @robot.move('F')
-        expect(@surface.out_of_bounds_coordinates).to eq(['5 3 N'])
-      end
-      it 'should not log the last known position if robot turns away from edge of surface' do
-        @robot.move('L')
-        expect(@surface.out_of_bounds_coordinates).to eq([])
-      end
-      it 'should ignore forward command when at the edge of the surface' do
-        @robot.move('F')
-        robot = Robot.new('5 3 N', @surface)
-        robot.move('F')
-        expect(robot.position).to eq('5 3 N')
-      end
+
+  describe 'leaving robot scent' do
+    it 'should log the last known position if falls off the planet' do
+      @robot.move('F')
+      expect(@surface.out_of_bounds_coordinates).to eq(['5 3 N'])
     end
+
+    it 'should not log the last known position if robot turns away from edge of surface' do
+      @robot.move('L')
+      expect(@surface.out_of_bounds_coordinates).to eq([])
+    end
+
+    it 'should ignore forward command when at the edge of the surface' do
+      @robot.move('F')
+      robot = Robot.new('5 3 N', @surface)
+      robot.move('F')
+      expect(robot.position).to eq('5 3 N')
+    end
+  end
 end
 
 
